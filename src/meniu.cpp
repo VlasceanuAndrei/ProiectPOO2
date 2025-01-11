@@ -18,7 +18,8 @@ void Meniu::run() {
                  "6. Vizualizeaza notele pentru o zi\n"
                  "7. Sorteaza si afiseaza elevii in ordine lexicografica inversa\n"
                  "8. Modifica nota\n"
-                 "9. Sorteaza descrescator profesorii dupa lungimea numelui si a prenumelui";
+                 "9. Sorteaza descrescator profesorii dupa lungimea numelui si a prenumelui\n"
+                 "10. Afiseaza data nasterii pentru un utilizator";
     int caz = 1;
     while (caz) {
         std::cin >> caz;
@@ -42,21 +43,27 @@ void Meniu::run() {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                p[indexP].adaugaNotaElev(e[indexE]);
+                if (indexE < e.size() && indexP < p.size())
+                    p[indexP].adaugaNotaElev(e[indexE]);
+                else std::cout << "Valorile introduse pentru index nu sunt valide.\n";
                 break;
             }
             case 4: {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                e[indexE].afiseazaNote();
+                if (indexE < e.size())
+                    e[indexE].afiseazaNote();
+                else std::cout << "Indexul nu este valid.\n";
                 break;
             }
             case 5: {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                std::cout << "Media generala a elevului: " << e[indexE].getMedieGenerala() << "\n";
+                if (indexE < e.size())
+                    std::cout << "Media generala a elevului: " << e[indexE].getMedieGenerala() << "\n";
+                else std::cout << "Indexul nu este valid.\n";
                 break;
             }
             case 6: {
@@ -66,7 +73,9 @@ void Meniu::run() {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                e[indexE].afiseazaNotePentruData(zi, luna, an);
+                if (indexE < e.size())
+                    e[indexE].afiseazaNotePentruData(zi, luna, an);
+                else std::cout << "Indexul nu este valid.\n";
                 break;
             }
             case 7: {
@@ -91,7 +100,9 @@ void Meniu::run() {
                 std::cout << "Introduceti nota cautata: ";
                 int nota;
                 std::cin >> nota;
-                p[indexP].modificaNotaElev(e[indexE], zi, luna, an, nota);
+                if (indexE < e.size() && indexP < p.size())
+                    p[indexP].modificaNotaElev(e[indexE], zi, luna, an, nota);
+                else std::cout << "Valorile introduse pentru index nu sunt valide.\n";
                 break;
             }
             case 9: {
@@ -100,6 +111,28 @@ void Meniu::run() {
                 });
                 for (size_t i = 0; i < p.size(); i++)
                     std::cout << p[i];
+                break;
+            }
+            case 10: {
+                std::cout << "Vizualizare data pentru profesor sau elev? (p/e): ";
+                char val;
+                std::cin >> val;
+                if (tolower(val) == 'p') {
+                    std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
+                    int indexP;
+                    std::cin >> indexP;
+                    if (indexP < p.size())
+                        p[indexP].afiseazaDataNasterii();
+                    else std::cout << "Indexul nu este valid.\n";
+                }
+                else if (tolower(val) == 'e') {
+                    std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                    int indexE;
+                    std::cin >> indexE;
+                    if (indexE < e.size())
+                        e[indexE].afiseazaDataNasterii();
+                    else std::cout << "Indexul nu este valid.\n";
+                }
                 break;
             }
         }
