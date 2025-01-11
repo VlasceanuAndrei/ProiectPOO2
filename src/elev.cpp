@@ -1,67 +1,70 @@
-#include "user.h"
+#include "elev.h"
 
-User::User() {
-    this->nume = "";
-    this->prenume = "";
-    this->nrTelefon = "";
-    this->ziNastere = 0;
-    this->lunaNastere = 0;
-    this->anNastere = 0;
+Elev::Elev() {}
+Elev::Elev(const std::string& nume, const std::string& prenume, const std::string& nrTelefon,
+        int ziNastere, int lunaNastere, int anNastere, const std::string& clasa, std::vector<Nota> note) :
+        User(nume, prenume, nrTelefon, ziNastere, lunaNastere, anNastere), clasa(clasa), note(note) {}
+Elev::Elev(const std::string& nume, const std::string& prenume, const std::string& nrTelefon,
+        int ziNastere, int lunaNastere, int anNastere, const std::string& clasa) :
+        User(nume, prenume, nrTelefon, ziNastere, lunaNastere, anNastere), clasa(clasa) {}
+Elev::~Elev() {
+        note.clear();
 }
-User::User(const std::string& nume, const std::string& prenume, const std::string& nrTelefon, int ziNastere, int lunaNastere, int anNastere) :
-    nume(nume), prenume(prenume), nrTelefon(nrTelefon), ziNastere(ziNastere), lunaNastere(lunaNastere), anNastere(anNastere) {}
-User::User(const std::string& nume, const std::string& prenume, const std::string& nrTelefon) :
-    nume(nume), prenume(prenume), nrTelefon(nrTelefon), ziNastere(0), lunaNastere(0), anNastere(0) {}
-User::User(const User& other) {
-    this->nume = other.nume;
-    this->prenume = other.prenume;
-    this->nrTelefon = other.nrTelefon;
-    this->ziNastere = other.ziNastere;
-    this->lunaNastere = other.lunaNastere;
-    this->anNastere = other.anNastere;
+std::ostream& operator<<(std::ostream& out, const Elev& e) {
+        out << "Elevul " << e.nume << " " << e.prenume << " cu nr. de telefon" <<
+        e.nrTelefon << " ,din clasa " << e.clasa << "\n";
+        return out;
 }
-User& User::operator=(const User& other) {
-    if(this != &other) {
-      this->nume = other.nume;
-      this->prenume = other.prenume;
-      this->nrTelefon = other.nrTelefon;
-      this->ziNastere = other.ziNastere;
-      this->lunaNastere = other.lunaNastere;
-      this->anNastere = other.anNastere;
-    }
-    return *this;
+std::istream& operator>>(std::istream& in, Elev& e) {
+        std::cout << "Nume:";
+        in >> e.nume;
+        std::cout << "Prenume:";
+        in >> e.prenume;
+        std::cout << "Nr. telefon:";
+        in >> e.nrTelefon;
+        std::cout << "Introduceti data nasterii? (0/1):";
+        int caz;
+        in >> caz;
+        if(caz) {
+                std::cout << "Data nasterii:";
+                in >> e.ziNastere >> e.lunaNastere >> e.anNastere;
+        }
+        std::cout << "Clasa:";
+        in >> e.clasa;
+        return in;
 }
-User::~User() {}
-std::ostream& operator<<(std::ostream& out, const User& u) {
-    out << "Utilizatorul " << u.nume << " " << u.prenume << " cu nr. de telefon " <<
-        u.nrTelefon << ", data nasterii " << u.ziNastere << " " << u.lunaNastere << " " << u.anNastere << "\n";
-    return out;
-};
-std::istream& operator>>(std::istream& in, User& u) {
-    std::cout << "Nume:";
-    in >> u.nume;
-    std::cout << "Prenume:";
-    in >> u.prenume;
-    std::cout << "Nr. telefon:";
-    in >> u.nrTelefon;
-    std::cout << "Introduceti data nasterii? (0/1):";
-    int caz;
-    in >> caz;
-    if(caz) {
-        std::cout << "Data nasterii:";
-        in >> u.ziNastere >> u.lunaNastere >> u.anNastere;
-    }
-    u.ziNastere = u.lunaNastere = u.anNastere = 0;
-    return in;
+void Elev::afiseazaNote() {
+        if (note.size() == 0)
+                std::cout << "Nu exista note asociate elevului.\n";
+        else {
+                std::cout << "Notele elevului sunt:\n";
+                for (size_t i = 0; i < note.size(); i++)
+                        std::cout << note[i];
+        }
 }
-bool User::operator<(const User& u) const { //ordonare lexicografica inversa dupa nume
-    return u.nume.compare(this->nume) < 0;
+double Elev::getMedieGenerala() {
+        if (note.size() == 0)
+                return 0;
+        else {
+                double s = 0;
+                for (size_t i = 0; i < note.size(); i++)
+                        s += note[i].getNota();
+                return s / note.size();
+        }
 }
-bool operator>(const User& u1, const User& u2) { //ordonare crescatoare dupa lungimea numelui + prenumelui
-    int lu1 = u1.nume.length() + u1.prenume.length();
-    int lu2 = u2.nume.length() + u2.prenume.length();
-    return lu1 > lu2;
+const std::string& Elev::getNume() const {
+        return this->nume;
 }
-void User::afiseazaDataNasterii() {
-    std::cout << "Data nasterii: " << ziNastere << " " << lunaNastere << " " << anNastere << "\n";
+const std::string& Elev::getPrenume() const {
+        return this->prenume;
+}
+void Elev::afiseazaNotePentruData(int zi, int luna, int an) {
+        std::string temp = std::to_string(zi) + "-" + std::to_string(luna) + "-" + std::to_string(an);
+        if (note.size() == 0)
+                std::cout << "Nu exista note asociate elevului.\n";
+        else {
+                for (size_t i = 0; i < note.size(); i++)
+                        if (temp.compare(note[i].getDataFormatata()) == 0)
+                                std::cout << note[i];
+        }
 }
