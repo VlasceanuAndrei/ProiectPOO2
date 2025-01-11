@@ -1,14 +1,17 @@
 #include "user.h"
 
-User::User() {}
+User::User() {
+    this->nume = "";
+    this->prenume = "";
+    this->nrTelefon = "";
+    this->ziNastere = 0;
+    this->lunaNastere = 0;
+    this->anNastere = 0;
+}
 User::User(const std::string& nume, const std::string& prenume, const std::string& nrTelefon, int ziNastere, int lunaNastere, int anNastere) :
     nume(nume), prenume(prenume), nrTelefon(nrTelefon), ziNastere(ziNastere), lunaNastere(lunaNastere), anNastere(anNastere) {}
 User::User(const std::string& nume, const std::string& prenume, const std::string& nrTelefon) :
-    nume(nume), prenume(prenume), nrTelefon(nrTelefon) {
-    ziNastere = 0;
-    lunaNastere = 0;
-    anNastere = 0;
-}
+    nume(nume), prenume(prenume), nrTelefon(nrTelefon), ziNastere(0), lunaNastere(0), anNastere(0) {}
 User::User(const User& other) {
     this->nume = other.nume;
     this->prenume = other.prenume;
@@ -48,6 +51,7 @@ std::istream& operator>>(std::istream& in, User& u) {
         std::cout << "Data nasterii:";
         in >> u.ziNastere >> u.lunaNastere >> u.anNastere;
     }
+    u.ziNastere = u.lunaNastere = u.anNastere = 0;
     return in;
 }
 bool User::operator<(const User& u) const { //ordonare lexicografica inversa dupa nume
