@@ -58,8 +58,12 @@ void Profesor::modificaNotaElev(User &u, int zi, int luna, int an, double val) {
     if (e != nullptr) {
         std::string temp = std::to_string(zi) + "-" + std::to_string(luna) + "-" + std::to_string(an);
         for (size_t i = 0; i < e->note.size(); i++) {
-            if (e->note[i].getDataFormatata().compare(temp) == 0 && e->note[i].getNota() == val)
-                e->note[i].modificaNota(val);
+            if (e->note[i].getDataFormatata().compare(temp) == 0 && e->note[i].getNota() == val) {
+                int notaNoua;
+                std::cout << "Nota noua: ";
+                std::cin >> notaNoua;
+                e->note[i].modificaNota(notaNoua);
+            }
         }
     }
 }
