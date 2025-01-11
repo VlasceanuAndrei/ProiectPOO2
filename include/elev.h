@@ -14,7 +14,7 @@ public:
     friend class Profesor;
     Elev();
     Elev(const std::string& nume, const std::string& prenume, const std::string& nrTelefon,
-        int ziNastere, int lunaNastere, int anNastere, const std::string& clasa, std::vector<Nota> note);
+        int ziNastere, int lunaNastere, int anNastere, const std::string& clasa, const std::vector<Nota>& note);
     Elev(const std::string& nume, const std::string& prenume, const std::string& nrTelefon,
         int ziNastere, int lunaNastere, int anNastere, const std::string& clasa);
     ~Elev() override;
