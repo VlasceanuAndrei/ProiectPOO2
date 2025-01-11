@@ -43,7 +43,7 @@ void Meniu::run() {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                if (indexE < e.size() && indexP < p.size())
+                if (indexE < static_cast<int>(e.size()) && indexP < static_cast<int>(p.size()))
                     p[indexP].adaugaNotaElev(e[indexE]);
                 else std::cout << "Valorile introduse pentru index nu sunt valide.\n";
                 break;
@@ -52,7 +52,7 @@ void Meniu::run() {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                if (indexE < e.size())
+                if (indexE < static_cast<int>(e.size()))
                     e[indexE].afiseazaNote();
                 else std::cout << "Indexul nu este valid.\n";
                 break;
@@ -61,7 +61,7 @@ void Meniu::run() {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                if (indexE < e.size())
+                if (indexE < static_cast<int>(e.size()))
                     std::cout << "Media generala a elevului: " << e[indexE].getMedieGenerala() << "\n";
                 else std::cout << "Indexul nu este valid.\n";
                 break;
@@ -73,7 +73,7 @@ void Meniu::run() {
                 std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
-                if (indexE < e.size())
+                if (indexE < static_cast<int>(e.size()))
                     e[indexE].afiseazaNotePentruData(zi, luna, an);
                 else std::cout << "Indexul nu este valid.\n";
                 break;
@@ -100,7 +100,7 @@ void Meniu::run() {
                 std::cout << "Introduceti nota cautata: ";
                 int nota;
                 std::cin >> nota;
-                if (indexE < e.size() && indexP < p.size())
+                if (indexE < static_cast<int>(e.size()) && indexP < static_cast<int>(p.size()))
                     p[indexP].modificaNotaElev(e[indexE], zi, luna, an, nota);
                 else std::cout << "Valorile introduse pentru index nu sunt valide.\n";
                 break;
@@ -121,7 +121,7 @@ void Meniu::run() {
                     std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
                     int indexP;
                     std::cin >> indexP;
-                    if (indexP < p.size())
+                    if (indexP < static_cast<int>(p.size()))
                         p[indexP].afiseazaDataNasterii();
                     else std::cout << "Indexul nu este valid.\n";
                 }
@@ -129,7 +129,7 @@ void Meniu::run() {
                     std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
                     int indexE;
                     std::cin >> indexE;
-                    if (indexE < e.size())
+                    if (indexE < static_cast<int>(e.size()))
                         e[indexE].afiseazaDataNasterii();
                     else std::cout << "Indexul nu este valid.\n";
                 }
