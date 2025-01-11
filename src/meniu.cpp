@@ -37,10 +37,10 @@ void Meniu::run() {
                 break;
             }
             case 3: {
-                std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
+                std::cout << "Introduceti indexul profesorului (maxim: " << static_cast<int>(p.size()) - 1 << "): ";
                 int indexP;
                 std::cin >> indexP;
-                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
                 if (indexE < static_cast<int>(e.size()) && indexP < static_cast<int>(p.size()))
@@ -49,7 +49,7 @@ void Meniu::run() {
                 break;
             }
             case 4: {
-                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
                 if (indexE < static_cast<int>(e.size()))
@@ -58,7 +58,7 @@ void Meniu::run() {
                 break;
             }
             case 5: {
-                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
                 if (indexE < static_cast<int>(e.size()))
@@ -70,7 +70,7 @@ void Meniu::run() {
                 std::cout << "Introduceti data pentru vizualizarea notei: ";
                 int zi, luna, an;
                 std::cin >> zi >> luna >> an;
-                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
                 if (indexE < static_cast<int>(e.size()))
@@ -88,10 +88,10 @@ void Meniu::run() {
                 break;
             }
             case 8: {
-                std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
+                std::cout << "Introduceti indexul profesorului (maxim: " << static_cast<int>(p.size()) - 1 << "): ";
                 int indexP;
                 std::cin >> indexP;
-                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                 int indexE;
                 std::cin >> indexE;
                 std::cout << "Introduceti data pentru modificarea notei: ";
@@ -118,7 +118,7 @@ void Meniu::run() {
                 char val;
                 std::cin >> val;
                 if (tolower(val) == 'p') {
-                    std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
+                    std::cout << "Introduceti indexul profesorului (maxim: " << static_cast<int>(p.size()) - 1 << "): ";
                     int indexP;
                     std::cin >> indexP;
                     if (indexP < static_cast<int>(p.size()))
@@ -126,7 +126,7 @@ void Meniu::run() {
                     else std::cout << "Indexul nu este valid.\n";
                 }
                 else if (tolower(val) == 'e') {
-                    std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                    std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                     int indexE;
                     std::cin >> indexE;
                     if (indexE < static_cast<int>(e.size()))
