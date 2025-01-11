@@ -1,0 +1,107 @@
+#include "meniu.h"
+
+Meniu::Meniu() {}
+Meniu::~Meniu() {}
+Meniu& Meniu::inst() {
+    Meniu *m = new Meniu();
+    return *m;
+}
+void Meniu::run() {
+    std::vector<Profesor> p;
+    std::vector<Elev> e;
+    std::cout << "0. Stop\n"
+                 "1. Adauga profesor\n"
+                 "2. Adauga elev\n"
+                 "3. Adauga nota\n"
+                 "4. Vizualizeaza note\n"
+                 "5. Vizualizeaza media generala\n"
+                 "6. Vizualizeaza notele pentru o zi\n"
+                 "7. Sorteaza si afiseaza elevii in ordine lexicografica inversa\n"
+                 "8. Modifica nota\n"
+                 "9. Sorteaza descrescator profesorii dupa lungimea numelui si a prenumelui";
+    int caz = 1;
+    while (caz) {
+        std::cin >> caz;
+        switch (caz) {
+            case 1: {
+                Profesor p1;
+                std::cin >> p1;
+                p.push_back(p1);
+                break;
+            }
+            case 2: {
+                Elev e1;
+                std::cin >> e1;
+                e.push_back(e1);
+                break;
+            }
+            case 3: {
+                std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
+                int indexP;
+                std::cin >> indexP;
+                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                int indexE;
+                std::cin >> indexE;
+                p[indexP].adaugaNotaElev(e[indexE]);
+                break;
+            }
+            case 4: {
+                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                int indexE;
+                std::cin >> indexE;
+                e[indexE].afiseazaNote();
+                break;
+            }
+            case 5: {
+                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                int indexE;
+                std::cin >> indexE;
+                std::cout << "Media generala a elevului: " << e[indexE].getMedieGenerala() << "\n";
+                break;
+            }
+            case 6: {
+                std::cout << "Introduceti data pentru vizualizarea notei: ";
+                int zi, luna, an;
+                std::cin >> zi >> luna >> an;
+                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                int indexE;
+                std::cin >> indexE;
+                e[indexE].afiseazaNotePentruData(zi, luna, an);
+                break;
+            }
+            case 7: {
+                std::sort(e.begin(), e.end(), [](const Elev& e1, const Elev& e2) {
+                    return e1 < e2;
+                });
+                for (size_t i = 0; i < e.size(); i++) {
+                    std::cout << e[i];
+                }
+                break;
+            }
+            case 8: {
+                std::cout << "Introduceti indexul profesorului (maxim: " << p.size() - 1 << "): ";
+                int indexP;
+                std::cin >> indexP;
+                std::cout << "Introduceti indexul elevului (maxim: " << e.size() - 1 << "): ";
+                int indexE;
+                std::cin >> indexE;
+                std::cout << "Introduceti data pentru modificarea notei: ";
+                int zi, luna, an;
+                std::cin >> zi >> luna >> an;
+                std::cout << "Introduceti nota cautata: ";
+                int nota;
+                std::cin >> nota;
+                p[indexP].modificaNotaElev(e[indexE], zi, luna, an, nota);
+                break;
+            }
+            case 9: {
+                std::sort(p.begin(), p.end(), [](const Profesor& p1, const Profesor& p2) {
+                    return p1 > p2;
+                });
+                for (size_t i = 0; i < p.size(); i++)
+                    std::cout << p[i];
+                break;
+            }
+        }
+    }
+}
