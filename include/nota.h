@@ -1,6 +1,7 @@
 #ifndef PROIECT_NOTA_H
 #define PROIECT_NOTA_H
 #include <iostream>
+#include <string>
 
 class Nota {
     double nota;
