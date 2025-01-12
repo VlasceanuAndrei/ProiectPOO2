@@ -67,3 +67,10 @@ void Profesor::modificaNotaElev(User &u, int zi, int luna, int an, double val) {
         }
     }
 }
+void Profesor::arePermisiuni() {
+    std::cout << "Profesorul poate adauga/ modifica notele elevilor.\n";
+    std::cout << "Doriti sa adaugati (0) sau sa modificati (1) o nota?";
+}
+void Profesor::areVenit() {
+    std::cout << "Venitul profesorului este de " << this->salariu << " lei.\n";
+}
