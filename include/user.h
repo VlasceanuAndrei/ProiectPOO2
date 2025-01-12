@@ -24,6 +24,8 @@ public:
     bool operator<(const User& u1) const;
     friend bool operator>(const User& u1, const User& u2);
     void afiseazaDataNasterii();
+    virtual void arePermisiuni();
+    virtual void areVenit();
 };
 
 #endif
