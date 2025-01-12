@@ -25,6 +25,8 @@ public:
     const std::string& getNume() const;
     const std::string& getPrenume() const;
     void afiseazaNotePentruData(int zi, int luna, int an);
+    void arePermisiuni() override;
+    void areVenit() override;
 };
 
 #endif
