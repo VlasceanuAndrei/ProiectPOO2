@@ -20,6 +20,8 @@ public:
     friend std::istream& operator>>(std::istream& in, Profesor& p);
     void adaugaNotaElev(User& u);
     void modificaNotaElev(User& u, int zi, int luna, int an, double val);
+    void arePermisiuni() override;
+    void areVenit() override;
 };
 
 #endif
