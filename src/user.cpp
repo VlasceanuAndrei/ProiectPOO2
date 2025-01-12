@@ -57,7 +57,7 @@ std::istream& operator>>(std::istream& in, User& u) {
 bool User::operator<(const User& u) const { //ordonare lexicografica inversa dupa nume
     return u.nume.compare(this->nume) < 0;
 }
-bool operator>(const User& u1, const User& u2) { //ordonare crescatoare dupa lungimea numelui + prenumelui
+bool operator>(const User& u1, const User& u2) { //ordonare descrescatoare dupa lungimea numelui + prenumelui
     int lu1 = u1.nume.length() + u1.prenume.length();
     int lu2 = u2.nume.length() + u2.prenume.length();
     return lu1 > lu2;
