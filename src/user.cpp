@@ -65,3 +65,9 @@ bool operator>(const User& u1, const User& u2) { //ordonare descrescatoare dupa 
 void User::afiseazaDataNasterii() {
     std::cout << "Data nasterii: " << ziNastere << " " << lunaNastere << " " << anNastere << "\n";
 }
+void User::arePermisiuni() {
+    std::cout << "Utilizatorul nu poate accesa catalogul.\n";
+}
+void User::areVenit() {
+    std::cout << "Nu se cunosc date despre venitul userului\n";
+}
