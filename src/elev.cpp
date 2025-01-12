@@ -68,3 +68,16 @@ void Elev::afiseazaNotePentruData(int zi, int luna, int an) {
                                 std::cout << note[i];
         }
 }
+void Elev::arePermisiuni() {
+        std::cout << "Elevul poate vizualiza notele sale.\n";
+        std::cout << "Doriti afisarea? (0/1): ";
+        int caz;
+        std::cin >> caz;
+        if (caz == 1)
+                this->afiseazaNote();
+}
+void Elev::areVenit() {
+        if (this->getMedieGenerala() >= 8.5)
+                std::cout << "Elevul primeste bursa.\n";
+        else std::cout << "Elevul nu primeste bursa.\n";
+}
