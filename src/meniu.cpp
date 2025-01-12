@@ -3,7 +3,7 @@
 Meniu::Meniu() {}
 Meniu::~Meniu() {}
 Meniu& Meniu::inst() {
-    Meniu *m = new Meniu();
+    static Meniu *m = new Meniu();
     return *m;
 }
 void Meniu::run() {
