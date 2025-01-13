@@ -62,18 +62,18 @@ void Meniu::run() {
                     std::cin >> indexP;
                     if (indexP < static_cast<int>(p.size())) {
                         p[indexP].arePermisiuni();
-                        int caz;
-                        std::cin >> caz;
+                        int temp;
+                        std::cin >> temp;
                         int indexE;
-                        if (caz == 0 || caz == 1) {
+                        if (temp == 0 || temp == 1) {
                             std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                             std::cin >> indexE;
                             if (indexE >= static_cast<int>(e.size()))
                                 std::cout << "Indexul nu este valid.\n";
                         }
-                        if (caz == 0)
+                        if (temp == 0)
                             p[indexP].adaugaNotaElev(e[indexE]);
-                        else if (caz == 1) {
+                        else if (temp == 1) {
                             int zi, luna, an;
                             std::cout << "Introduceti data: ";
                             std::cin >> zi >> luna >> an;
