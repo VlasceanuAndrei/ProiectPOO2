@@ -22,6 +22,7 @@ public:
     void modificaNotaElev(User& u, int zi, int luna, int an, double val);
     void arePermisiuni() override;
     void areVenit() override;
+    void profesorValid();
 };
 
 #endif
