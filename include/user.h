@@ -26,6 +26,7 @@ public:
     void afiseazaDataNasterii();
     virtual void arePermisiuni();
     virtual void areVenit();
+    bool dateValide() const;
 };
 
 #endif
