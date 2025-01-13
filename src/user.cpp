@@ -71,3 +71,10 @@ void User::arePermisiuni() {
 void User::areVenit() {
     std::cout << "Nu se cunosc date despre venitul userului\n";
 }
+bool User::dateValide() const {
+    if (this->ziNastere > 0 && this->ziNastere < 32)
+        if (this->lunaNastere > 0 && this->lunaNastere < 13)
+            if (this->anNastere > 1900 && this->anNastere < 2015)
+                return true;
+    return false;
+}
