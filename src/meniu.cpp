@@ -64,7 +64,7 @@ void Meniu::run() {
                         p[indexP].arePermisiuni();
                         int temp;
                         std::cin >> temp;
-                        int indexE;
+                        int indexE = 0;
                         if (temp == 0 || temp == 1) {
                             std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                             std::cin >> indexE;
