@@ -20,7 +20,8 @@ void Meniu::run() {
                  "7. Sorteaza si afiseaza elevii in ordine lexicografica inversa\n"
                  "8. Sorteaza descrescator profesorii dupa lungimea numelui si a prenumelui\n"
                  "9. Afiseaza data nasterii pentru un utilizator\n"
-                 "10. Afisare venit pentru user";
+                 "10. Afisare venit pentru user\n"
+                 "11. Validare profesor/ elev\n";
     int caz = 1;
     while (caz) {
         std::cin >> caz;
@@ -61,18 +62,18 @@ void Meniu::run() {
                     std::cin >> indexP;
                     if (indexP < static_cast<int>(p.size())) {
                         p[indexP].arePermisiuni();
-                        int temp;
-                        std::cin >> temp;
-                        int indexE = 0;
-                        if (temp == 0 || temp == 1) {
+                        int caz;
+                        std::cin >> caz;
+                        int indexE;
+                        if (caz == 0 || caz == 1) {
                             std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
                             std::cin >> indexE;
                             if (indexE >= static_cast<int>(e.size()))
                                 std::cout << "Indexul nu este valid.\n";
                         }
-                        if (temp == 0)
+                        if (caz == 0)
                             p[indexP].adaugaNotaElev(e[indexE]);
-                        else if (temp == 1) {
+                        else if (caz == 1) {
                             int zi, luna, an;
                             std::cout << "Introduceti data: ";
                             std::cin >> zi >> luna >> an;
@@ -191,6 +192,27 @@ void Meniu::run() {
                     else std::cout << "Indexul nu este valid.\n";
                 }
                 break;
+            }
+            case 11: {
+                std::cout << "Validare profesor/elev (p/e): ";
+                char val;
+                std::cin >> val;
+                if (tolower(val) == 'p') {
+                    std::cout << "Introduceti indexul profesorului (maxim: " << static_cast<int>(p.size()) - 1 << "): ";
+                    int indexP;
+                    std::cin >> indexP;
+                    if (indexP < static_cast<int>(p.size()))
+                        p[indexP].profesorValid();
+                    else std::cout << "Indexul nu este valid.\n";
+                }
+                else if (tolower(val) == 'e') {
+                    std::cout << "Introduceti indexul elevului (maxim: " << static_cast<int>(e.size()) - 1 << "): ";
+                    int indexE;
+                    std::cin >> indexE;
+                    if (indexE < static_cast<int>(e.size()))
+                        e[indexE].elevValid();
+                    else std::cout << "Indexul nu este valid.\n";
+                }
             }
         }
     }
