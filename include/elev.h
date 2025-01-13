@@ -27,6 +27,7 @@ public:
     void afiseazaNotePentruData(int zi, int luna, int an);
     void arePermisiuni() override;
     void areVenit() override;
+    void elevValid();
 };
 
 #endif
