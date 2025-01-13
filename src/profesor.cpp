@@ -75,8 +75,9 @@ void Profesor::areVenit() {
     std::cout << "Venitul profesorului este de " << this->salariu << " lei.\n";
 }
 void Profesor::profesorValid() {
-    if (this->dateValide())
+    if (this->dateValide()) {
         if (salariu > 0 && materie != "")
             std::cout << "Profesorul poate fi validat.\n";
+    }
     else std::cout << "Profesorul nu poate fi validat.\n";
 }
