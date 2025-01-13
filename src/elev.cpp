@@ -82,8 +82,9 @@ void Elev::areVenit() {
         else std::cout << "Elevul nu primeste bursa.\n";
 }
 void Elev::elevValid() {
-        if (this->dateValide())
+        if (this->dateValide()) {
                 if (clasa != "")
                         std::cout << "Elevul poate fi validat.\n";
+        }
         else std::cout << "Elevul nu poate fi validat.\n";
 }
